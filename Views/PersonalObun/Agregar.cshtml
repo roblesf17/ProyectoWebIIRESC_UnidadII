@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "Agregar";
+}
+
+    <div class="header bg-primary pb-6">
+        <div class="container-fluid">
+            <div class="header-body">
+                <div class="row align-items-center py-4">
+                    <div class="col-lg-6 col-7">
+                        <h6 class="h2 text-white d-inline-block mb-0">TAEX</h6>
+                        <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                                <li class="breadcrumb-item">
+                                    <a href="#">
+                                        <img src="~/recursos/imagen/home.png" width="20" height="20" style="margin-right:10px;">
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">Personal OBUN</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><a href="~/PersonalObun/Index">Lista</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Nuevo Registro</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">Nuevo Registro Personal </h3>
+                        </div>
+                        <div class="col-4 text-right">
+                            <a href="#!" class="btn btn-sm btn-primary">Guardar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <h6 class="heading-small text-muted mb-4">Información de Usuario Personal</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-username">DNI</label>
+                                        <input type="text" id="input-username" class="form-control" placeholder="Ingrese DNI" value="lucky.jesse">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-email">Nombres</label>
+                                        <input type="text" id="input-email" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-first-name">Apellido Paterno</label>
+                                        <input type="text" id="input-first-name" class="form-control" placeholder="First name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-last-name">Apellido Materno</label>
+                                        <input type="text" id="input-last-name" class="form-control" placeholder="Last name">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4" />
+                        <!-- Address -->
+                        <h6 class="heading-small text-muted mb-4">Datos Personales Adicionales</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-address">E-mail</label>
+                                        <input type="email" id="input-address" class="form-control" placeholder="Correo Electronico">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-city">Celular</label>
+                                        <input type="text" id="input-city" class="form-control" placeholder="Celular" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-country">Dirección</label>
+                                        <input type="text" id="input-coutry" class="form-control" placeholder="Av.Direccion" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Estado</label>
+                                    <select class="form-control" id="exampleFormControlSelect1">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer pt-0">
+        <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6">
+                <div class="copyright text-center  text-lg-left  text-muted">
+                    &copy; 2020 <a href="#" class="font-weight-bold ml-1" target="_blank">Taex - OBUN</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+

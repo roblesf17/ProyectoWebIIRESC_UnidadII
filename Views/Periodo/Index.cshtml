@@ -1,0 +1,55 @@
+﻿@model List<SIGEM_TAEX.Models.Periodo>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2 class="page-header">
+    Periodo
+    <a href="~/Periodo/AgregarEditar/" class="btn btn-success float-lg-right">Nuevo Periodo</a>
+</h2>
+<br />
+
+
+@using (Html.BeginForm("Index", "Periodo", FormMethod.Post,
+    new { Criterio = "Frm-Buscar" }))
+{
+    <div class="text-left">
+        @Html.Label("Buscar : ")
+        @Html.TextBox("Criterio")
+        <button type="submit" class="btn btn-info">Buscar</button>
+    </div>
+}
+
+<table id="DataTablesLanguage" class="table align-items-center table-flush">
+    <thead>
+        <tr>
+            <th style="width : 50px;"> ID</th>
+            <th style="width : 200px;">Nombre del Periodo</th>
+
+            <th style="width : 300px">Acciones</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+
+                <th>@(m.ID_Periodo)</th>
+                <th>@(m.Nombre_Periodo)</th>
+
+                <th>
+                    <a href="~/Periodo/Ver/@m.ID_Periodo" class="btn btn-xs btn-warning">Detalles</a>
+                    <a href="~/Periodo/AgregarEditar/@m.ID_Periodo" class="btn btn-xs btn-primary">Modificar</a>
+                    <a onclick="return confirm('Esta seguro que desea eliminabr el registro?...');"
+                       href="~/Periodo/Eliminar/@m.ID_Periodo" class="btn btn-xs btn-danger">Eliminar</a>
+                </th>
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+

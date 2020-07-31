@@ -1,0 +1,58 @@
+﻿@model  SIGEM_TAEX.Models.Escuela_Profesional
+@{
+    ViewBag.Title = (Model.ID_Escuela > 0 ? Model.Nombre_Escuela : "Nueva Escuela");
+    List<SIGEM_TAEX.Models.Escuela_Profesional> docente = ViewBag.Docente;
+}
+
+<h2>Agregar / Editar</h2>
+
+<ol class="breadcrumb">
+    <li><a href="~/EscuelaProfesional/Index">Escuela Profesional</a></li>
+    <li> / </li>
+    <li class="active">@(Model.ID_Escuela > 0 ? Model.Nombre_Escuela : "Nueva Escuela")</li>
+</ol>
+
+@using (Html.BeginForm("Guardar", "EscuelaProfesional", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.ID_Escuela)
+
+    <div class="card">
+        <div class="card-header">Información de la categoria</div>
+
+        <div class="card-body">
+
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.ID_Escuela, new { @class = "form-control", disabled = true }) <!--no podrá ser editado-->
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.Label("Nombre de la Escuela")
+                @Html.TextBoxFor(x => x.Nombre_Escuela, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Nombre_Escuela, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Facultad")
+
+                <select name="Facultad" class="form-control">
+                    <option @(Model.Facultad == "" ? "selected" : "") value=""> --Seleccione-- </option>
+                    <option @(Model.Facultad == "FAING" ? "selected" : "") value="FAING"> FAING </option>
+                    <option @(Model.Facultad == "FACEM" ? "selected" : "") value="FAING"> FACEM </option>
+                    <option @(Model.Facultad == "FADE" ? "selected" : "") value="FAING"> FADE </option>
+                </select>
+                @Html.ValidationMessageFor(x => x.Facultad, null, new { @class = "text-danger" })
+
+            </div>
+
+        </div>
+    </div>
+
+    <br />
+    <div class="text-right">
+        <button type="submit" class="btn btn-primary"> Registrar Escuela </button>
+        <a href="~/EscuelaProfesional" class="btn btn-danger"> Cancelar </a>
+    </div>
+}

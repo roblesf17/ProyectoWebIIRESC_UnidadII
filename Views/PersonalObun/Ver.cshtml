@@ -1,4 +1,4 @@
-﻿
+﻿@model SIGEM_TAEX.Models.Personal_OBUN
 @{
     ViewBag.Title = "Ver";
 }
@@ -20,6 +20,7 @@
                             <li class="breadcrumb-item"><a href="#">Personal OBUN</a></li>
                             <li class="breadcrumb-item active" aria-current="page"><a href="~/PersonalObun/Index">Lista</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Ver</li>
+                            <li class="active">@Model.Nombres , @Model.Apellido_Paterno @Model.Apellido_Materno</li>
                         </ol>
                     </nav>
                 </div>
@@ -43,71 +44,47 @@
                 </div>
                 <div class="card-body">
                     <form>
-                        <h6 class="heading-small text-muted mb-4">Información de Usuario Personal</h6>
-                        <div class="pl-lg-4">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-username">DNI:</label><br />
-                                        Valor aqui
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-email">Nombres:</label><br />
-                                        Valor aqui
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-first-name">Apellido Paterno:</label>
-                                        <br />
-                                        Valor aqui
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-last-name">Apellido Materno:</label><br />
-                                        Valor aqui
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="my-4" />
-                        <!-- Address -->
-                        <h6 class="heading-small text-muted mb-4">Datos Personales Adicionales</h6>
-                        <div class="pl-lg-4">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-address">E-mail:</label><br />
-                                        Valor aqui
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-city">Celular:</label><br />
-                                        Valor aqui
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-country">Dirección:</label><br />
-                                        Valor aqui
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-country">Estado:</label><br />
-                                        Valor aqui
-                                    </div>
-                                </div>
+
+
+                        <div class="card card-body">
+                            <div class="card-header">Informacion del la Escuela Profesional</div>
+                            <div class="card-body">
+                                <dl class="dl-horizontal">
+                                    <dt>Id</dt>
+                                    <dd>@Model.ID_Personal</dd>
+
+                                    <dt>DNI</dt>
+                                    <dd>@Model.DNI</dd>
+
+                                    <dt>Nombres</dt>
+                                    <dd>@Model.Nombres </dd>
+
+                                    <dt>Apellido Paterno</dt>
+                                    <dd>@Model.Apellido_Paterno </dd>
+
+                                    <dt>Apellido Materno</dt>
+                                    <dd>@Model.Apellido_Materno </dd>
+
+                                    <dt>Celular</dt>
+                                    <dd>@Model.Celular </dd>
+
+                                    <dt>Correo</dt>
+                                    <dd>@Model.Correo </dd>
+
+                                    <dt>Direccion</dt>
+                                    <dd>@Model.Direccion </dd>
+
+                                    <dt>Estado</dt>
+                                    <dd>@(Model.Estado == "A" ? "Activo" : "Inactivo")</dd>
+
+                                </dl>
                             </div>
                         </div>
+
+
+
+
+
                     </form>
                 </div>
             </div>

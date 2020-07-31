@@ -1,0 +1,66 @@
+﻿@model  SIGEM_TAEX.Models.Horario
+@{
+    ViewBag.Title = (Model.ID_Horario > 0 ? Model.Dia : "Nuevo Horario");
+    List<SIGEM_TAEX.Models.Horario> docente = ViewBag.Docente;
+}
+
+<h2>Agregar / Editar</h2>
+
+<ol class="breadcrumb">
+    <li><a href="~/Horario/Index">Horario</a></li>
+    <li> / </li>
+    <li class="active">@(Model.ID_Horario > 0 ? Model.Dia : "Nuevo Horario")</li>
+</ol>
+
+@using (Html.BeginForm("Guardar", "Horario", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.ID_Horario)
+
+    <div class="card">
+        <div class="card-header">Información de la categoria</div>
+
+        <div class="card-body">
+
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.ID_Horario, new { @class = "form-control", disabled = true }) <!--no podrá ser editado-->
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Día")
+
+                <select name="Dia" class="form-control">
+                    <option @(Model.Dia == "" ? "selected" : "") value=""> --Seleccione-- </option>
+                    <option @(Model.Dia == "Lunes" ? "selected" : "") value="Lunes"> Lunes </option>
+                    <option @(Model.Dia == "Martes" ? "selected" : "") value="Martes"> Martes </option>
+                    <option @(Model.Dia == "Miércoles" ? "selected" : "") value="Miércoles"> Miércoles </option>
+                    <option @(Model.Dia == "Jueves" ? "selected" : "") value="Jueves"> Jueves </option>
+                    <option @(Model.Dia == "Viernes" ? "selected" : "") value="Viernes"> Viernes </option>
+                    <option @(Model.Dia == "Sábado" ? "selected" : "") value="Sábado"> Sábado </option>
+                    <option @(Model.Dia == "Domingo" ? "selected" : "") value="Domingo"> Domingo </option>
+                </select>
+                @Html.ValidationMessageFor(x => x.Dia, null, new { @class = "text-danger" })
+
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Hora de Inicio")
+                @Html.TextBoxFor(m => m.Hora, new { type = "time" })
+                @Html.ValidationMessageFor(x => x.Hora, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Hora de Fin")
+                @Html.TextBoxFor(m => m.Hora_Fin, new { type = "time" })
+                @Html.ValidationMessageFor(x => x.Hora_Fin, null, new { @class = "text-danger" })
+            </div>
+
+        </div>
+    </div>
+
+    <br />
+    <div class="text-right">
+        <button type="submit" class="btn btn-primary"> Registrar Horario </button>
+        <a href="~/Horario" class="btn btn-danger"> Cancelar </a>
+    </div>
+}

@@ -1,0 +1,57 @@
+﻿@model List<SIGEM_TAEX.Models.Escuela_Profesional>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2 class="page-header">
+    Escuela Profesional
+    <a href="~/EscuelaProfesional/AgregarEditar/" class="btn btn-success float-lg-right">Nueva Escuela</a>
+</h2>
+<br />
+
+
+@using (Html.BeginForm("Index", "EscuelaProfesional", FormMethod.Post,
+    new { Criterio = "Frm-Buscar" }))
+{
+    <div class="text-left">
+        @Html.Label("Buscar : ")
+        @Html.TextBox("Criterio")
+        <button type="submit" class="btn btn-info">Buscar</button>
+    </div>
+}
+
+<table id="DataTablesLanguage" class="table align-items-center table-flush">
+    <thead>
+        <tr>
+            <th style="width : 50px;"> ID</th>
+            <th style="width : 150px;">Nombre de la escuela</th>
+            <th style="width : 100px;">Facultad</th>
+
+            <th style="width : 300px">Acciones</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+
+                <th>@(m.ID_Escuela)</th>
+                <th>@(m.Nombre_Escuela)</th>
+                <th>@(m.Facultad )</th>
+
+                <th>
+                    <a href="~/EscuelaProfesional/Ver/@m.ID_Escuela" class="btn btn-xs btn-warning">Detalles</a>
+                    <a href="~/EscuelaProfesional/AgregarEditar/@m.ID_Escuela" class="btn btn-xs btn-primary">Modificar</a>
+                    <a onclick="return confirm('Esta seguro que desea eliminabr el registro?...');"
+                       href="~/EscuelaProfesional/Eliminar/@m.ID_Escuela" class="btn btn-xs btn-danger">Eliminar</a>
+                </th>
+
+
+            </tr>
+        }
+    </tbody>
+</table>

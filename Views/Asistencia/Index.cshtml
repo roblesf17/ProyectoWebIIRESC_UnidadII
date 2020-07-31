@@ -1,0 +1,66 @@
+﻿@model List<SIGEM_TAEX.Models.Asistencia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="page-header">
+    Taller
+    <a href="~/Asistencia/AgregarEditar/" class="btn btn-success float-lg-right">Asistencia</a>
+</h2>
+<br />
+
+@using (Html.BeginForm("Index", "Taller", FormMethod.Post,
+    new { Criterio = "Frm-Buscar" }))
+{
+    <div class="text-left">
+        @Html.Label("Buscar : ")
+        @Html.TextBox("Criterio")
+        <button type="submit" class="btn btn-info">Buscar</button>
+    </div>
+}
+
+
+<table id="DataTablesLanguage" class="table align-items-center table-flush">
+    <thead>
+        <tr>
+            <th style="width : 50px;"> ID</th>
+            <th style="width : 150px;">Estudiante</th>
+            <th style="width : 100px;">Taller</th>
+            <th style="width : 100px;">Fecha</th>
+            <th style="width : 100px;">Asistencia</th>
+            <th style="width : 100px;">Tardanza</th>
+            <th style="width : 100px;">Inasistencia</th>
+
+            <th style="width : 300px">Acciones</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var m in Model)
+        {
+        <tr>
+
+            <th>@(m.ID_Asistencia)</th>
+            <th>@(m.Estudiante.Nombres +" " + m.Estudiante.Apellido_Paterno + " " +  m.Estudiante.Apellido_Materno)</th>
+            <th>@(m.Taller.Nombre)</th>
+            <th>@(m.Fecha)</th>
+            <th>@(m.Asistencia1)</th>
+            <th>@(m.Tardanza)</th>
+            <th>@(m.Inasistencia )</th>
+
+
+
+            <th>
+                <a href="~/Asistencia/Ver/@m.ID_Asistencia" class="btn btn-xs btn-warning">Detalles</a>
+                <a href="~/Asistencia/AgregarEditar/@m.ID_Asistencia" class="btn btn-xs btn-primary">Modificar</a>
+                <a onclick="return confirm('Esta seguro que desea eliminabr el registro?...');"
+                   href="~/Asistencia/Eliminar/@m.ID_Asistencia" class="btn btn-xs btn-danger">Eliminar</a>
+            </th>
+
+
+        </tr>
+        }
+    </tbody>
+</table>

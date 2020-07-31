@@ -1,0 +1,45 @@
+﻿@model SIGEM_TAEX.Models.Nota
+
+@{
+    ViewBag.Title = "Ver";
+}
+
+    <h2>Ver</h2>
+
+    <ol class="breadcrumb">
+        <li><a href="~/Nota/Index">Nota </a></li>
+        <li> / </li>
+        <li class="active">@(Model.Estudiante.Nombres +" "+ Model.Estudiante.Apellido_Paterno + " " + Model.Estudiante.Apellido_Materno)</li>
+    </ol>
+
+    <div class="card card-body">
+        <div class="card-header">Detalles del Taller</div>
+        <div class="card-body">
+            <dl class="dl-horizontal">
+                <dt>Id Nota</dt>
+                <dd>@Model.ID_Nota</dd>
+
+                <dt>Estudiante</dt>
+                <dd>@(Model.Estudiante.Nombres + " " + Model.Estudiante.Apellido_Paterno + " " + Model.Estudiante.Apellido_Materno )</dd>
+
+                <dt>Taller </dt>
+                <dd>@Model.Taller.Nombre </dd>
+
+                <dt>Periodo </dt>
+                <dd>@(Model.Periodo.Nombre_Periodo )  </dd>
+
+                <dt>Evaluacion 1</dt>
+                <dd>@Model.Evaluacion1 </dd>
+
+                <dt>Evaluacion 2</dt>
+                <dd>@Model.Evaluacion2 </dd>
+
+                <dt>Evaluacion 3</dt>
+                <dd>@Model.Evaluacion3 </dd>
+
+                <dt>Promedio </dt>
+                <dd>@Model.Promedio </dd>
+
+            </dl>
+        </div>
+    </div>

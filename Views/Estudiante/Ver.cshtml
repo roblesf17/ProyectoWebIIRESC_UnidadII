@@ -1,0 +1,61 @@
+﻿@model SIGEM_TAEX.Models.Estudiante
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Ver</h2>
+
+<ol class="breadcrumb">
+    <li><a href="~/Estudiante/Index">Estudiante</a></li>
+    <li> / </li>
+    <li class="active">@Model.Nombres , @Model.Apellido_Paterno @Model.Apellido_Materno</li>
+</ol>
+
+<div class="card card-body">
+    <div class="card-header">Informacion del Estudiante</div>
+    <div class="card-body">
+        <dl class="dl-horizontal">
+
+            <dt>Id Estudiante</dt>
+            <dd>@Model.ID_Estudiante</dd>
+
+            <dt>Escuela</dt>
+            <dd>@Model.Escuela_Profesional.Nombre_Escuela - @Model.Escuela_Profesional.Facultad</dd>
+
+            <dt>Tipo de Identificacion</dt>
+            <dd>@Model.Tipo_Identificacion</dd>
+
+            <dt>Numero de Identificacion</dt>
+            <dd>@Model.Numero_Identificacion</dd>
+
+            <dt>Nombres </dt>
+            <dd>@Model.Nombres</dd>
+
+            <dt>Apellido Paterno</dt>
+            <dd>@Model.Apellido_Paterno</dd>
+
+            <dt>Apellido Materno</dt>
+            <dd>@Model.Apellido_Materno</dd>
+
+            <dt>Fecha de Nacimiento</dt>
+            <dd>@Model.Fecha_Nacimiento</dd>
+
+            <dt>Celular</dt>
+            <dd>@Model.Celular</dd>
+
+            <dt>Direccion</dt>
+            <dd>@Model.Dirección</dd>
+
+            <dt>Correo</dt>
+            <dd>@Model.Correo</dd>
+
+            <dt>Sexo</dt>
+            <dd>@Model.Sexo</dd>
+
+            <dt>Estado</dt>
+            <dd>@(Model.Estado == "A" ? "Activo" : "Inactivo")</dd>
+
+        </dl>
+    </div>
+</div>

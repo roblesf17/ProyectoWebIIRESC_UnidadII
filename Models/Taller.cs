@@ -6,6 +6,13 @@ namespace SIGEM_TAEX.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    using System.Linq;
+    using System.Security.Cryptography.X509Certificates;
+
+    using System.Data.Entity.Validation;
+    using System.IO;
+    using System.Data.Entity;
+
     [Table("Taller")]
     public partial class Taller
     {
@@ -61,5 +68,118 @@ namespace SIGEM_TAEX.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Nota> Nota { get; set; }
+
+        //Mètodo Listar
+        public List<Taller> Listar() //retorna una lista o colección del objetos
+        {
+            var obj_taller = new List<Taller>();
+
+            try
+            {
+                using (var db = new BDModeloTaex())
+                {
+                    obj_taller = db.Taller.Include("Docente").Include("Horario").Include("Lugar").ToList(); //Debe listar lo que hay en mi Tabla Usuario
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return obj_taller; //Muestra o retorna todos los objetos almacenados
+        }
+
+        //Metodo Buscar
+        public List<Taller> Buscar(string Criterio) //retorna una lista o colección del objetos
+        {
+            var obj_taller = new List<Taller>();
+            try
+            {
+                using (var db = new BDModeloTaex()) //ADO que creamos
+                {
+                    obj_taller = db.Taller
+                                    .Where(x =>
+                                                x.Nombre.Contains(Criterio) || //se puede buscar por docente porque hemos incluido la tabla
+                                                x.Categoria.Contains(Criterio)
+                                                )
+                                    .ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return obj_taller;
+        }
+
+
+        //Metodo Obtener
+        public Taller Obtener(int id) //retornar un objeto
+        {
+            var obj_taller = new Taller();
+
+            try
+            {
+                using (var db = new BDModeloTaex())
+                {
+                    obj_taller = db.Taller.Include("Docente").Include("Horario").Include("Lugar")
+                                    .Where(x => x.ID_Taller == id)
+                                    .SingleOrDefault(); //devuelve un registro
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return obj_taller;
+        }
+
+        //metodo guardar
+        public void Guardar()
+        {
+            try
+            {
+                using (var db = new BDModeloTaex())
+                {
+                    if (this.ID_Taller > 0)
+                    {
+                        db.Entry(this).State = EntityState.Modified;
+                    }
+                    else
+                    {
+                        db.Entry(this).State = EntityState.Added;
+                    }
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        //eliminar
+        public void Eliminar()
+        {
+            try
+            {
+                using (var db = new BDModeloTaex())
+                {
+
+
+                    db.Entry(this).State = EntityState.Deleted;
+
+                    db.SaveChanges();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
     }
 }

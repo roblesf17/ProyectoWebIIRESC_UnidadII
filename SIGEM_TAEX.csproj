@@ -50,6 +50,9 @@
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -1759,14 +1762,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AsistenciaController.cs" />
+    <Compile Include="Controllers\DocenteController.cs" />
+    <Compile Include="Controllers\EscuelaProfesionalController.cs" />
     <Compile Include="Controllers\EstudianteController.cs" />
+    <Compile Include="Controllers\HorarioController.cs" />
+    <Compile Include="Controllers\LugarController.cs" />
+    <Compile Include="Controllers\MatriculaController.cs" />
+    <Compile Include="Controllers\NotaController.cs" />
+    <Compile Include="Controllers\PeriodoController.cs" />
     <Compile Include="Controllers\PersonalObunController.cs" />
+    <Compile Include="Controllers\ReniecController.cs" />
+    <Compile Include="Controllers\TallerController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\WebController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Asistencia.cs" />
     <Compile Include="Models\BDModeloTaex.cs" />
+    <Compile Include="Models\ClsReniec.cs" />
+    <Compile Include="Models\Docente.cs" />
+    <Compile Include="Models\Escuela_Profesional.cs" />
+    <Compile Include="Models\Estudiante.cs" />
+    <Compile Include="Models\Horario.cs" />
+    <Compile Include="Models\Lugar.cs" />
+    <Compile Include="Models\Matricula.cs" />
+    <Compile Include="Models\Nota.cs" />
+    <Compile Include="Models\Periodo.cs" />
+    <Compile Include="Models\Personal_OBUN.cs" />
+    <Compile Include="Models\Taller.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1792,12 +1818,45 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Estudiante\Index.cshtml" />
     <Content Include="Views\PersonalObun\Index.cshtml" />
-    <Content Include="Views\PersonalObun\Agregar.cshtml" />
     <Content Include="Views\PersonalObun\Ver.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
-    <Content Include="Views\Usuario\Agregar.cshtml" />
     <Content Include="Views\Usuario\Ver.cshtml" />
     <Content Include="Views\Shared\Layout2.cshtml" />
+    <Content Include="Views\EscuelaProfesional\Index.cshtml" />
+    <Content Include="Views\EscuelaProfesional\Ver.cshtml" />
+    <Content Include="Views\EscuelaProfesional\AgregarEditar.cshtml" />
+    <Content Include="Views\Estudiante\Ver.cshtml" />
+    <Content Include="Views\Estudiante\AgregarEditar.cshtml" />
+    <Content Include="Views\Docente\Index.cshtml" />
+    <Content Include="Views\Docente\Ver.cshtml" />
+    <Content Include="Views\Docente\AgregarEditar.cshtml" />
+    <Content Include="Views\Docente\ReniecDocente.cshtml" />
+    <Content Include="Views\Docente\AgregarEditarModificar.cshtml" />
+    <Content Include="Views\PersonalObun\Agregar.cshtml" />
+    <Content Include="Views\PersonalObun\AgregarModificar.cshtml" />
+    <Content Include="Views\Horario\Index.cshtml" />
+    <Content Include="Views\Horario\Ver.cshtml" />
+    <Content Include="Views\Horario\AgregarEditar.cshtml" />
+    <Content Include="Views\Lugar\Index.cshtml" />
+    <Content Include="Views\Lugar\Ver.cshtml" />
+    <Content Include="Views\Lugar\AgregarEditar.cshtml" />
+    <Content Include="Views\Periodo\Index.cshtml" />
+    <Content Include="Views\Periodo\Ver.cshtml" />
+    <Content Include="Views\Periodo\AgregarEditar.cshtml" />
+    <Content Include="Views\Estudiante\AgregarEditarModificar.cshtml" />
+    <Content Include="Views\Taller\Index.cshtml" />
+    <Content Include="Views\Taller\Ver.cshtml" />
+    <Content Include="Views\Taller\AgregarEditar.cshtml" />
+    <Content Include="Views\Matricula\Index.cshtml" />
+    <Content Include="Views\Matricula\Ver.cshtml" />
+    <Content Include="Views\Matricula\AgregarEditar.cshtml" />
+    <Content Include="Views\Nota\Index.cshtml" />
+    <Content Include="Views\Nota\Ver.cshtml" />
+    <Content Include="Views\Nota\AgregarEditar.cshtml" />
+    <Content Include="Views\Asistencia\Index.cshtml" />
+    <Content Include="Views\Asistencia\Ver.cshtml" />
+    <Content Include="Views\Asistencia\AgregarEditar.cshtml" />
+    <Content Include="Views\Usuario\AgregarEditar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1809,6 +1868,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="recursos\DataTables\js\" />
     <Folder Include="source\vendor\bootstrap\dist\js\" />
+    <Folder Include="Views\Reniec\" />
     <Folder Include="Views\Web\" />
   </ItemGroup>
   <PropertyGroup>

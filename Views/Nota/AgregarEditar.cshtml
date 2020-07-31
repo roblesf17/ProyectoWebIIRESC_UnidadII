@@ -1,0 +1,112 @@
+﻿@model  SIGEM_TAEX.Models.Nota
+
+@{
+    ViewBag.Title = (Model.ID_Nota > 0 ? Model.Estudiante.Nombres + " " + Model.Estudiante.Apellido_Paterno + " " + Model.Estudiante.Apellido_Materno : "Registrar Notas");
+    List<SIGEM_TAEX.Models.Estudiante> docente = ViewBag.Docente;
+    List<SIGEM_TAEX.Models.Taller> docente1 = ViewBag.Docente1;
+    List<SIGEM_TAEX.Models.Periodo> docente2 = ViewBag.Docente2;
+}
+
+<h2>Agregar / Editar</h2>
+
+<ol class="breadcrumb">
+    <li><a href="~/Nota/Index">Taller</a></li>
+    <li> / </li>
+    <li class="active">@(Model.ID_Nota > 0 ? Model.Estudiante.Nombres + " " + Model.Estudiante.Apellido_Paterno + " " + Model.Estudiante.Apellido_Materno : "Nuevo Taller")</li>
+</ol>
+
+@using (Html.BeginForm("Guardar", "Nota", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.ID_Nota)
+
+    <div class="card">
+        <div class="card-header">Información de la categoria</div>
+
+        <div class="card-body">
+
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.ID_Taller, new { @class = "form-control", disabled = true }) <!--no podrá ser editado-->
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Estudiante")
+                <select name="ID_Estudiante" class="form-control">
+                    <option @(Model.ID_Estudiante.Equals("") ? "selected" : "") value=""> --Seleccione-- </option>
+
+                    @foreach (var d in docente)
+                    {
+                        <option @(Model.ID_Estudiante.Equals(d.ID_Estudiante) ? "selected" : "") value="@d.ID_Estudiante">
+                            @d.Nombres, @d.Apellido_Paterno @d.Apellido_Materno
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Taller")
+                <select name="ID_Taller" class="form-control">
+                    <option @(Model.ID_Taller.Equals("") ? "selected" : "") value=""> --Seleccione-- </option>
+
+                    @foreach (var d in docente1)
+                    {
+                        <option @(Model.ID_Taller.Equals(d.ID_Taller) ? "selected" : "") value="@d.ID_Taller">
+                            @d.Nombre
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Periodo")
+                <select name="ID_Periodo" class="form-control">
+                    <option @(Model.ID_Periodo.Equals("") ? "selected" : "") value=""> --Seleccione-- </option>
+
+                    @foreach (var d in docente2)
+                    {
+                        <option @(Model.ID_Periodo.Equals(d.ID_Periodo) ? "selected" : "") value="@d.ID_Periodo">
+                            @d.Nombre_Periodo
+                        </option>
+                    }
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                @Html.Label("Evaluacion 1")
+                @Html.TextBoxFor(x => x.Evaluacion1, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Evaluacion1, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Evaluacion 2")
+                @Html.TextBoxFor(x => x.Evaluacion2, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Evaluacion2, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Evaluacion 3")
+                @Html.TextBoxFor(x => x.Evaluacion3, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Evaluacion3, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Promedio")
+                @Html.TextBoxFor(x => x.Promedio, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Promedio, null, new { @class = "text-danger" })
+            </div>
+
+
+        </div>
+    </div>
+
+    <br />
+    <div class="text-right">
+        <button type="submit" name="submitButton" class="btn btn-primary" value="Guardar Datos"> Guardar Cambios </button>
+
+
+        <a href="~/Nota" class="btn btn-danger"> Cancelar </a>
+    </div>
+
+
+}

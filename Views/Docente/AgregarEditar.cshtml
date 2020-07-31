@@ -1,0 +1,98 @@
+﻿@model  SIGEM_TAEX.Models.Docente
+@{
+    ViewBag.Title = (Model.ID_Docente > 0 ? Model.Nombres + " " + Model.Apellido_Paterno + " " + Model.Apellido_Materno : "Nueva Docente");
+    List<SIGEM_TAEX.Models.Docente> docente = ViewBag.Docente;
+}
+
+<h2>Agregar / Editar</h2>
+
+<ol class="breadcrumb">
+    <li><a href="~/Docente/Index">Docente</a></li>
+    <li> / </li>
+    <li class="active">@(Model.ID_Docente > 0 ? Model.Nombres + " " + Model.Apellido_Paterno + " " + Model.Apellido_Materno : "Nueva Docente")</li>
+</ol>
+
+@using (Html.BeginForm("Guardar", "Docente", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.ID_Docente)
+
+    <div class="card">
+        <div class="card-header">Información de la categoria</div>
+
+        <div class="card-body">
+
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.ID_Docente, new { @class = "form-control", disabled = true }) <!--no podrá ser editado-->
+            </div>
+
+            <div class="form-group">
+                @Html.Label("DNI")
+                @Html.TextBoxFor(x => x.DNI, new { @Value = SIGEM_TAEX.Controllers.DocenteController.dni_docente_temporal, @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.DNI, null, new { @class = "text-danger" })
+
+                <br />
+                <input type="submit" name="submitButton" class="btn btn-warning" value="Consultar en RENIEC" />
+                <input type="submit" name="submitButton" class="btn btn-danger" value="Limpiar Consulta" />
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Nombres")
+                @Html.TextBoxFor(x => x.Nombres, new { @Value = SIGEM_TAEX.Controllers.DocenteController.primero_nombre_temporal +" " +SIGEM_TAEX.Controllers.DocenteController.segundo_nombre_temporal, @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Nombres, null, new { @class = "text-danger" })
+            </div>
+            
+            <div class="form-group">
+                @Html.Label("Apellido Paterno")
+                @Html.TextBoxFor(x => x.Apellido_Paterno, new { @Value = SIGEM_TAEX.Controllers.DocenteController.apellido_paterno_temporal, @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Apellido_Paterno, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Apellido Materno")
+                @Html.TextBoxFor(x => x.Apellido_Materno, new { @Value = SIGEM_TAEX.Controllers.DocenteController.apellido_materno_temporal, @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Apellido_Materno, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Correo Electronico")
+                @Html.TextBoxFor(x => x.Correo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Correo, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Celular")
+                @Html.TextBoxFor(x => x.Celular, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Celular, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Direccion")
+                @Html.TextBoxFor(x => x.Direccion, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Direccion, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Estado")
+                <select name="Estado" class="form-control">
+                    <option @(Model.Estado == "" ? "selected" : "") value=""> --Seleccione-- </option>
+                    <option @(Model.Estado == "A" ? "selected" : "") value="A"> Activo </option>
+                    <option @(Model.Estado == "I" ? "selected" : "") value="I"> Inactivo </option>
+                </select>
+                @Html.ValidationMessageFor(x => x.Estado, null, new { @class = "text-danger" })
+            </div>
+
+
+        </div>
+    </div>
+
+    <br />
+    <div class="text-right">
+        <button type="submit" name="submitButton" class="btn btn-primary" value="Guardar Datos"> Registrar Docente </button>
+        
+
+        <a href="~/Docente" class="btn btn-danger"> Cancelar </a>
+    </div>
+
+   
+}

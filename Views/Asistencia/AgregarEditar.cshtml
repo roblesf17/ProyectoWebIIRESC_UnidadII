@@ -1,0 +1,94 @@
+﻿@model  SIGEM_TAEX.Models.Asistencia
+
+@{
+    ViewBag.Title = (Model.ID_Asistencia > 0 ? Model.Estudiante.Nombres + " " + Model.Estudiante.Apellido_Paterno + " " + Model.Estudiante.Apellido_Materno : "Registrar Asistencia");
+    List<SIGEM_TAEX.Models.Estudiante> docente = ViewBag.Docente;
+    List<SIGEM_TAEX.Models.Taller> docente1 = ViewBag.Docente1;
+}
+
+<h2>AgregarEditar</h2>
+
+<ol class="breadcrumb">
+    <li><a href="~/Asistencia/Index">Taller</a></li>
+    <li> / </li>
+    <li class="active">@(Model.ID_Taller > 0 ? Model.Estudiante.Nombres + " " + Model.Estudiante.Apellido_Paterno + " " + Model.Estudiante.Apellido_Materno : "Registrar Asistencia")</li>
+</ol>
+
+@using (Html.BeginForm("Guardar", "Asistencia", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.ID_Asistencia)
+
+    <div class="card">
+        <div class="card-header">Información de la categoria</div>
+
+        <div class="card-body">
+
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.ID_Asistencia, new { @class = "form-control", disabled = true }) <!--no podrá ser editado-->
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Estudiante")
+                <select name="ID_Estudiante" class="form-control">
+                    <option @(Model.ID_Estudiante.Equals("") ? "selected" : "") value=""> --Seleccione-- </option>
+
+                    @foreach (var d in docente)
+                    {
+                        <option @(Model.ID_Estudiante.Equals(d.ID_Estudiante) ? "selected" : "") value="@d.ID_Estudiante">
+                            @d.Nombres, @d.Apellido_Paterno @d.Apellido_Materno
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Taller")
+                <select name="ID_Taller" class="form-control">
+                    <option @(Model.ID_Taller.Equals("") ? "selected" : "") value=""> --Seleccione-- </option>
+
+                    @foreach (var d in docente1)
+                    {
+                        <option @(Model.ID_Taller.Equals(d.ID_Taller) ? "selected" : "") value="@d.ID_Taller">
+                            @d.Nombre
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Fecha")
+
+
+                @Html.TextBoxFor(m => m.Fecha, new { type = "date" })
+                @Html.ValidationMessageFor(x => x.Fecha, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <div class="radio-inline">
+                    @Html.RadioButtonFor(model => model.Asistencia1, "X", false)@Html.Label("Asistencia")&nbsp;&nbsp;&nbsp;
+                </div>
+                <div class="radio-inline">
+                    @Html.RadioButtonFor(model => model.Tardanza, "X", false)@Html.Label("Tardanza")&nbsp;&nbsp;&nbsp;
+                </div>
+                <div class="radio-inline">
+                    @Html.RadioButtonFor(model => model.Inasistencia, "X", false)@Html.Label("Inasistencia")&nbsp;&nbsp;&nbsp;
+                </div>
+
+                
+               
+            </div>
+
+            </div>
+    </div>
+
+    <br />
+    <div class="text-right">
+        <button type="submit" name="submitButton" class="btn btn-primary" value="Guardar Datos"> Enviar Asistencia </button>
+
+
+        <a href="~/Asistencia" class="btn btn-danger"> Cancelar </a>
+    </div>
+
+
+}

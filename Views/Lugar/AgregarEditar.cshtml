@@ -1,0 +1,49 @@
+﻿@model  SIGEM_TAEX.Models.Lugar
+@{
+    ViewBag.Title = (Model.ID_Lugar > 0 ? Model.Direccion : "Nuevo Horario");
+    List<SIGEM_TAEX.Models.Lugar> docente = ViewBag.Docente;
+}
+
+<h2>Agregar / Editar</h2>
+
+<ol class="breadcrumb">
+    <li><a href="~/Horario/Index">Lugar</a></li>
+    <li> / </li>
+    <li class="active">@(Model.ID_Lugar > 0 ? Model.Direccion : "Nuevo Lugar")</li>
+</ol>
+
+@using (Html.BeginForm("Guardar", "Lugar", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.ID_Lugar)
+
+    <div class="card">
+        <div class="card-header">Información de la categoria</div>
+
+        <div class="card-body">
+
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.ID_Lugar, new { @class = "form-control", disabled = true }) <!--no podrá ser editado-->
+            </div>
+
+            <div class="form-group">
+                    @Html.Label("Dirección")
+                    @Html.TextBoxFor(x => x.Direccion, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Direccion, null, new { @class = "text-danger" })
+                </div>
+
+            <div class="form-group">
+                @Html.Label("Referencia")
+                @Html.TextBoxFor(x => x.Referencia, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Referencia, null, new { @class = "text-danger" })
+            </div>
+                       
+        </div>
+    </div>
+
+    <br />
+    <div class="text-right">
+        <button type="submit" class="btn btn-primary"> Registrar Lugar </button>
+        <a href="~/Lugar" class="btn btn-danger"> Cancelar </a>
+    </div>
+}

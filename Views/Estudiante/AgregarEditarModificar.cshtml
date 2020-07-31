@@ -1,0 +1,140 @@
+﻿@model SIGEM_TAEX.Models.Estudiante
+
+@{
+    ViewBag.Title = (Model.ID_Estudiante > 0 ? Model.Nombres + " " + Model.Apellido_Paterno + " " + Model.Apellido_Materno : "Nuevo Registro");
+    List<SIGEM_TAEX.Models.Escuela_Profesional> docente = ViewBag.Docente;
+}
+
+
+
+<h2>Agregar / Editar</h2>
+
+<ol class="breadcrumb">
+    <li><a href="~/Estudiante/Index">Estudiante</a></li>
+    <li> / </li>
+    <li class="active">@(Model.ID_Estudiante > 0 ? Model.Nombres + " " + Model.Apellido_Paterno + " " + Model.Apellido_Materno : "Nuevo Registro")</li>
+</ol>
+
+@using (Html.BeginForm("Guardar", "Estudiante", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.ID_Estudiante)
+
+    <div class="card">
+        <div class="card-header">Información del Usuario</div>
+        <div class="card-body">
+            <div class="form-group">
+                @Html.Label("Estudiante Id")
+                @Html.TextBoxFor(x => x.ID_Estudiante, new { @class = "form-control", disabled = true }) <!--no podrá ser editado-->
+            </div>
+            <div class="form-group">
+                @Html.Label("Escuela Profesional")
+                <select name="ID_Escuela" class="form-control">
+                    <option @(Model.ID_Escuela.Equals("") ? "selected" : "") value=""> --Seleccione-- </option>
+
+                    @foreach (var d in docente)
+                    {
+                        <option @(Model.ID_Escuela.Equals(d.ID_Escuela) ? "selected" : "") value="@d.ID_Escuela">
+                            @d.Nombre_Escuela, @d.Facultad
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Tipo de Identificacion")
+
+                <select name="Tipo_Identificacion" class="form-control">
+                    <option @(Model.Tipo_Identificacion == "" ? "selected" : "") value=""> --Seleccione-- </option>
+                    <option @(Model.Tipo_Identificacion == "DNI" ? "selected" : "") value="DNI"> DNI </option>
+                    <option @(Model.Tipo_Identificacion == "PASAPORTE" ? "selected" : "") value="PASAPORTE"> PASAPORTE </option>
+                </select>
+                @Html.ValidationMessageFor(x => x.Tipo_Identificacion, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Numero de Identificacion")
+                @Html.TextBoxFor(x => x.Numero_Identificacion, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Numero_Identificacion, null, new { @class = "text-danger" })
+             </div>
+
+            <div class="form-group">
+                @Html.Label("Nombre")
+                @Html.TextBoxFor(x => x.Nombres, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Nombres, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Apellido Paterno")
+                @Html.TextBoxFor(x => x.Apellido_Paterno, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Apellido_Paterno, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Apellido Materno")
+                @Html.TextBoxFor(x => x.Apellido_Materno, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Apellido_Materno, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Fecha de nacimiento")
+
+
+                @Html.TextBoxFor(m => m.Fecha_Nacimiento, new { type = "date" })
+
+                @Html.ValidationMessageFor(x => x.Fecha_Nacimiento, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Numero de Celular")
+                @Html.TextBoxFor(x => x.Celular, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Celular, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Direccion")
+                @Html.TextBoxFor(x => x.Dirección, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Dirección, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Correo electronico")
+                @Html.TextBoxFor(x => x.Correo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Correo, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Sexo")
+
+                <select name="Sexo" class="form-control">
+                    <option @(Model.Sexo == "" ? "selected" : "") value=""> --Seleccione-- </option>
+                    <option @(Model.Sexo == "M" ? "selected" : "") value="M"> MASCULINO </option>
+                    <option @(Model.Sexo == "F" ? "selected" : "") value="F"> FEMENINO </option>
+                </select>
+                @Html.ValidationMessageFor(x => x.Sexo, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Estado")
+
+                <select name="Estado" class="form-control">
+                    <option @(Model.Estado == "" ? "selected" : "") value=""> --Seleccione-- </option>
+                    <option @(Model.Estado == "A" ? "selected" : "") value="A"> Activo </option>
+                    <option @(Model.Estado == "I" ? "selected" : "") value="I"> Inactivo </option>
+                </select>
+                @Html.ValidationMessageFor(x => x.Estado, null, new { @class = "text-danger" })
+            </div>
+
+
+        </div>
+    </div>
+
+    <br />
+    <div class="text-right">
+        <button type="submit" name="submitButton" class="btn btn-primary" value="Guardar Datos"> Registrar Estudiante </button>
+        <a href="~/Estudiante" class="btn btn-danger"> Cancelar </a>
+    </div>
+    <br />
+    <br />
+    <br />
+
+}

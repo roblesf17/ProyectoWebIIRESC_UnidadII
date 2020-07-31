@@ -1,0 +1,48 @@
+﻿@model SIGEM_TAEX.Models.Docente
+
+@{
+    ViewBag.Title = "Ver";
+}
+
+    <h2>Ver</h2>
+
+    <ol class="breadcrumb">
+        <li><a href="~/Docente/Index">Docente </a></li>
+        <li> / </li>
+        <li class="active">@Model.ID_Docente</li>
+    </ol>
+
+    <div class="card card-body">
+        <div class="card-header">Detalles del Docente</div>
+        <div class="card-body">
+            <dl class="dl-horizontal">
+                <dt>Id</dt>
+                <dd>@Model.ID_Docente</dd>
+
+                <dt>DNI</dt>
+                <dd>@Model.DNI</dd>
+
+                <dt>Nombres </dt>
+                <dd>@Model.Nombres </dd>
+
+                <dt>Apellido Paterno </dt>
+                <dd>@Model.Apellido_Paterno </dd>
+
+                <dt>Apellido Materno </dt>
+                <dd>@Model.Apellido_Materno </dd>
+
+                <dt>Correo </dt>
+                <dd>@Model.Correo </dd>
+
+                <dt>Celular </dt>
+                <dd>@Model.Celular </dd>
+
+                <dt>Direccion </dt>
+                <dd>@Model.Direccion </dd>
+
+                <dt>Estado</dt>
+                <dd>@(Model.Estado == "A" ? "Activo" : "Inactivo")</dd>
+
+            </dl>
+        </div>
+    </div>

@@ -1,0 +1,27 @@
+﻿@model SIGEM_TAEX.Models.Periodo
+@{
+    ViewBag.Title = "Ver";
+}
+
+<h2>Ver</h2>
+
+<ol class="breadcrumb">
+    <li><a href="~/Periodo/Index">Periodo</a></li>
+    <li> / </li>
+    <li class="active">@Model.ID_Periodo</li>
+</ol>
+
+<div class="card card-body">
+    <div class="card-header">Informacion de Periodo</div>
+    <div class="card-body">
+        <dl class="dl-horizontal">
+            <dt>Id</dt>
+            <dd>@Model.ID_Periodo</dd>
+
+            <dt>Nombre del Periodo</dt>
+            <dd>@Model.Nombre_Periodo</dd>
+
+        </dl>
+    </div>
+</div>
+

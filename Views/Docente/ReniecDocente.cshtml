@@ -1,0 +1,38 @@
+﻿@model SIGEM_TAEX.Models.ClsReniec
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>ReniecDocente</h2>
+
+@using (Html.BeginForm("Index", "Reniec", FormMethod.Post))
+{
+    @Html.Label("INGRESE DNI")
+    @Html.TextBoxFor(x => x.DNI, new { @class = "form-control" })
+
+    @Html.Label("PRIMER NOMBRE")
+    @Html.TextBoxFor(x => x.primer_nombre_cls, new { @Value = SIGEM_TAEX.Controllers.DocenteController.primero_nombre_temporal , @class = "form-control" })
+
+    @Html.Label("SEGUNDO NOMBRE")
+    @Html.TextBoxFor(x => x.segundo_nombre_cls, new { @Value = SIGEM_TAEX.Controllers.DocenteController.segundo_nombre_temporal , @class = "form-control" })
+
+    @Html.Label("APELLIDO PATERNO")
+    @Html.TextBoxFor(x => x.apellidopaterno_cls, new { @Value = SIGEM_TAEX.Controllers.DocenteController.apellido_paterno_temporal , @class = "form-control" })
+
+    @Html.Label("APELLIDO MATERNO")
+    @Html.TextBoxFor(x => x.apellidomaterno_cls, new { @Value = SIGEM_TAEX.Controllers.DocenteController.apellido_materno_temporal , @class = "form-control" })
+
+    @*<label>RESULTADOS:</label> @ViewBag.mayor <br />*@
+
+
+
+    <div class="text-right">
+        <button type="submit" class="btn btn-primary">
+            buscar en RENIEC
+        </button>
+
+        <a href="~/Docente/AgregarEditar.cshtml" class="btn btn-danger"> Ir a formulario Docente </a>
+    </div>
+
+}

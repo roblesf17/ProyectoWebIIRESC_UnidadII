@@ -1,0 +1,66 @@
+﻿@model List<SIGEM_TAEX.Models.Nota>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="page-header">
+    Taller
+    <a href="~/Nota/AgregarEditar/" class="btn btn-success float-lg-right">Agregar Notas</a>
+</h2>
+<br />
+
+@using (Html.BeginForm("Index", "Nota", FormMethod.Post,
+    new { Criterio = "Frm-Buscar" }))
+{
+    <div class="text-left">
+        @Html.Label("Buscar : ")
+        @Html.TextBox("Criterio")
+        <button type="submit" class="btn btn-info">Buscar</button>
+    </div>
+}
+
+
+<table id="DataTablesLanguage" class="table align-items-center table-flush">
+    <thead>
+        <tr>
+            <th style="width : 50px;"> ID</th>
+            <th style="width : 300px">Estudiante</th>
+            <th style="width : 300px">Taller</th>
+            <th style="width : 300px">Periodo</th>
+
+            <th style="width : 150px;">Evaluacion 1</th>
+            <th style="width : 150px;">Evaluacion 2</th>
+            <th style="width : 150px;">Evaluacion 3</th>
+            <th style="width : 150px;">Promedio</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+
+                <th>@(m.ID_Nota)</th>
+                <th>@(m.Estudiante.Nombres +" " + m.Estudiante.Apellido_Paterno + " " +  m.Estudiante.Apellido_Materno)</th>
+                <th>@(m.Taller.Nombre )</th>
+                <th>@(m.Periodo.Nombre_Periodo )</th>
+                <th>@(m.Evaluacion1 )</th>
+                <th>@(m.Evaluacion2 )</th>
+                <th>@(m.Evaluacion3 )</th>
+                <th>@(m.Promedio )</th>
+                
+                <th>
+                    <a href="~/Nota/Ver/@m.ID_Nota" class="btn btn-xs btn-warning">Detalles</a>
+                    <a href="~/Nota/AgregarEditar/@m.ID_Nota" class="btn btn-xs btn-primary">Modificar</a>
+                    <a onclick="return confirm('Esta seguro que desea eliminabr el registro?...');"
+                       href="~/Nota/Eliminar/@m.ID_Nota" class="btn btn-xs btn-danger">Eliminar</a>
+                </th>
+
+
+            </tr>
+        }
+    </tbody>
+</table>

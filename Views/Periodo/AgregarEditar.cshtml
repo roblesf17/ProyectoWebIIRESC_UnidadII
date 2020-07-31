@@ -1,0 +1,43 @@
+﻿@model  SIGEM_TAEX.Models.Periodo
+@{
+    ViewBag.Title = (Model.ID_Periodo > 0 ? Model.Nombre_Periodo : "Nuevo Periodo");
+    List<SIGEM_TAEX.Models.Periodo> docente = ViewBag.Docente;
+}
+
+<h2>Agregar / Editar</h2>
+
+<ol class="breadcrumb">
+    <li><a href="~/Periodo/Index">Periodo</a></li>
+    <li> / </li>
+    <li class="active">@(Model.ID_Periodo > 0 ? Model.Nombre_Periodo : "Nuevo Periodo")</li>
+</ol>
+
+@using (Html.BeginForm("Guardar", "Periodo", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.ID_Periodo)
+
+    <div class="card">
+        <div class="card-header">Información del Periodo</div>
+
+        <div class="card-body">
+
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.ID_Periodo, new { @class = "form-control", disabled = true }) <!--no podrá ser editado-->
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Nombre del Periodo")
+                @Html.TextBoxFor(x => x.Nombre_Periodo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Nombre_Periodo, null, new { @class = "text-danger" })
+            </div>
+
+        </div>
+    </div>
+
+    <br />
+    <div class="text-right">
+        <button type="submit" class="btn btn-primary"> Registrar Horario </button>
+        <a href="~/Horario" class="btn btn-danger"> Cancelar </a>
+    </div>
+}

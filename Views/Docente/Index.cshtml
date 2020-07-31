@@ -1,0 +1,68 @@
+﻿@model List<SIGEM_TAEX.Models.Docente>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="page-header">
+    Docente
+    <a href="~/Docente/AgregarEditar/" class="btn btn-success float-lg-right">Nuevo Docente</a>
+</h2>
+<br />
+
+@using (Html.BeginForm("Index", "Docente", FormMethod.Post,
+    new { Criterio = "Frm-Buscar" }))
+{
+    <div class="text-left">
+        @Html.Label("Buscar : ")
+        @Html.TextBox("Criterio")
+        <button type="submit" class="btn btn-info">Buscar</button>
+    </div>
+}
+
+<table id="DataTablesLanguage" class="table align-items-center table-flush">
+    <thead>
+        <tr>
+            <th style="width : 50px;"> ID</th>
+            <th style="width : 150px;">DNI</th>
+            <th style="width : 100px;">Nombres</th>
+            <th style="width : 100px;">Apellido Paterno</th>
+            <th style="width : 100px;">Apellido Materno</th>
+            <th style="width : 100px;">Correo</th>
+            <th style="width : 100px;">Celular</th>
+            <th style="width : 100px;">Direccion</th>
+            <th style="width : 100px;">Estado</th>
+
+            <th style="width : 300px">Acciones</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var m in Model)
+        {
+        <tr>
+
+            <th>@(m.ID_Docente)</th>
+            <th>@(m.DNI)</th>
+            <th>@(m.Nombres )</th>
+            <th>@(m.Apellido_Paterno )</th>
+            <th>@(m.Apellido_Materno )</th>
+            <th>@(m.Correo )</th>
+            <th>@(m.Celular )</th>
+            <th>@(m.Direccion )</th>
+            <th>@(m.Estado == "A" ? "Activo" : "Inactivo")</th>
+
+
+            <th>
+                <a href="~/Docente/Ver/@m.ID_Docente" class="btn btn-xs btn-warning">Detalles</a>
+                <a href="~/Docente/AgregarEditarModificar/@m.ID_Docente" class="btn btn-xs btn-primary">Modificar</a>
+                <a onclick="return confirm('Esta seguro que desea eliminabr el registro?...');"
+                   href="~/Docente/Eliminar/@m.ID_Docente" class="btn btn-xs btn-danger">Eliminar</a>
+            </th>
+
+
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,7 +1,14 @@
-﻿
+﻿@model List<SIGEM_TAEX.Models.Estudiante>
 @{
     ViewBag.Title = "Index";
 }
+
+    <h2 class="page-header">
+        Index
+        <a href="~/Estudiante/AgregarEditar/" class="btn btn-success float-lg-right">Nuevo Registro</a>
+        Estudiante
+
+    </h2>
 
 <div class="header bg-primary pb-6">
     <div class="container-fluid">
@@ -40,107 +47,65 @@
                 <!-- Light table -->
                 <div class="table-responsive">
                     <table id="DataTablesLanguage" class="table align-items-center table-flush">
-                        <thead class="thead-light" style="margin-top:10px;">
+
+                        <thead>
                             <tr>
-                                <th scope="col" class="sort" data-sort="name">Project</th>
-                                <th scope="col" class="sort" data-sort="budget">Budget</th>
-                                <th scope="col" class="sort" data-sort="status">Status</th>
-                                <th scope="col">Users</th>
-                                <th scope="col" class="sort" data-sort="completion">Completion</th>
-                                <th scope="col"></th>
+                                <th style="width : 50px;"> Id Estudiante</th>
+                                <th style="width : 50px;"> Id Escuela</th>
+                                <th style="width : 150px;">Tipo de identificacion</th>
+                                <th style="width : 120px;">Numero de Identificacion</th>
+                                <th style="width : 120px;">Nombres</th>
+                                <th style="width : 70px;">Apellido Paterno</th>
+                                <th style="width : 70px;">Apellido Materno</th>
+                                <th style="width : 70px;">Fecha Nacimiento/th>
+                                <th style="width : 70px;">Celular</th>
+                                <th style="width : 70px;">Direccion</th>
+                                <th style="width : 70px;">Correo</th>
+                                <th style="width : 70px;">Sexo</th>
+                                <th style="width : 70px;">Estado</th>
+
+
+                                <th style="width : 250px">Acciones</th>
+
                             </tr>
+
                         </thead>
 
-                        <tbody class="list">
+                        <tbody>
+                            @foreach (var m in Model)
+                            {
                             <tr>
-                                <th scope="row">
-                                    <div class="media align-items-center">
-                                        <span class="name mb-0 text-sm">Argon Design System</span>
-                                    </div>
+                                @*<th>@(m.usuario_id)</th>*@
+                                <th>@(m.ID_Estudiante)</th>
+                                <th>@(m.Escuela_Profesional.Facultad + ", " + m.Escuela_Profesional.Nombre_Escuela)</th>
+
+                                <th>@(m.Tipo_Identificacion)</th>
+                                <th>@(m.Numero_Identificacion)</th>
+                                <th>@(m.Nombres)</th>
+                                <th>@(m.Apellido_Paterno)</th>
+                                <th>@(m.Apellido_Materno)</th>
+                                <th>@(m.Fecha_Nacimiento)</th>
+                                <th>@(m.Celular)</th>
+                                <th>@(m.Dirección)</th>
+                                <th>@(m.Correo)</th>
+                                <th>@(m.Sexo)</th>
+                                <th>@(m.Estado == "A" ? "Activo" : "Inactivo")</th>
+                                <th>
+                                    <a href="~/Estudiante/Ver/@m.ID_Estudiante" class="btn btn-xs btn-warning">Detalles</a>
+                                    <a href="~/Estudiante/AgregarEditarModificar/@m.ID_Estudiante" class="btn btn-xs btn-primary">Modificar</a>
+                                    <a onclick="return confirm('Esta seguro que desea eliminabr el registro?...');"
+                                       href="~/Estudiante/Eliminar/@m.ID_Estudiante" class="btn btn-xs btn-danger">Eliminar</a>
+
+
                                 </th>
-                                <td class="budget">
-                                    $2500 USD
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td class="text-right">
-                                    <a href="#" class="btn btn-sm btn-neutral">Ver</a>
-                                    <a href="~/Usuario/Agregar" class="btn btn-sm btn-neutral">Modificar</a>
-                                </td>
                             </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="media align-items-center">
-                                        <span class="name mb-0 text-sm">Argon Design System</span>
-                                    </div>
-                                </th>
-                                <td class="budget">
-                                    $2500 USD
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td class="text-right">
-                                    <a href="#" class="btn btn-sm btn-neutral">Ver</a>
-                                    <a href="~/Usuario/Agregar" class="btn btn-sm btn-neutral">Modificar</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="media align-items-center">
-                                        <span class="name mb-0 text-sm">Argon Design System</span>
-                                    </div>
-                                </th>
-                                <td class="budget">
-                                    $2500 USD
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td class="text-right">
-                                    <a href="#" class="btn btn-sm btn-neutral">Ver</a>
-                                    <a href="~/Usuario/Agregar" class="btn btn-sm btn-neutral">Modificar</a>
-                                </td>
-                            </tr>
+                            }
                         </tbody>
+
+
+
                     </table>
+
                     <br /><br />
                 </div>
             </div>

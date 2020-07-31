@@ -1,0 +1,42 @@
+﻿@model SIGEM_TAEX.Models.Asistencia
+
+@{
+    ViewBag.Title = "Ver";
+}
+
+<h2>Ver</h2>
+
+<ol class="breadcrumb">
+    <li><a href="~/Asistencia/Index">Asistencia </a></li>
+    <li> / </li>
+    <li class="active">@Model.Estudiante.Nombres , @Model.Estudiante.Apellido_Paterno @Model.Estudiante.Apellido_Materno</li>
+</ol>
+
+<div class="card card-body">
+    <div class="card-header">Asistencia del Estudiante</div>
+    <div class="card-body">
+        <dl class="dl-horizontal">
+            <dt>Id</dt>
+            <dd>@Model.ID_Asistencia</dd>
+
+            <dt>Estudiante</dt>
+            <dd>@(Model.Estudiante.Nombres + " " + Model.Estudiante.Apellido_Paterno + " " + Model.Estudiante.Apellido_Materno )</dd>
+
+            <dt>Taller </dt>
+            <dd>@Model.Taller.Nombre </dd>
+
+            <dt>Fecha</dt>
+            <dd>@(Model.Fecha)  </dd>
+
+            <dt>Asistencia</dt>
+            <dd>@Model.Asistencia1 </dd>
+
+            <dt>Tardanzas </dt>
+            <dd>@Model.Tardanza </dd>
+
+            <dt>Faltas</dt>
+            <dd>@Model.Inasistencia</dd>
+
+        </dl>
+    </div>
+</div>

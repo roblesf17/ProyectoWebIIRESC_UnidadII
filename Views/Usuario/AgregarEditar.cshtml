@@ -1,0 +1,126 @@
+﻿@model  SIGEM_TAEX.Models.Usuario
+
+@{
+    ViewBag.Title = (Model.ID_Usuario > 0 ? Model.Nombre : "Nuevo Usuario");
+    List<SIGEM_TAEX.Models.Personal_OBUN> docente = ViewBag.Docente;
+    List<SIGEM_TAEX.Models.Docente> docente1 = ViewBag.Docente1;
+    List<SIGEM_TAEX.Models.Estudiante> docente2 = ViewBag.Docente2;
+}
+
+<h2>Agregar / Editar</h2>
+
+<ol class="breadcrumb">
+    <li><a href="~/Usuario/Index">Usuario</a></li>
+    <li> / </li>
+    <li class="active">@(Model.ID_Usuario > 0 ? Model.Nombre : "Nuevo Taller")</li>
+</ol>
+
+@using (Html.BeginForm("Guardar", "Usuario", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.ID_Usuario)
+
+    <div class="card">
+        <div class="card-header">Formulario Usuario</div>
+
+        <div class="card-body">
+
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.ID_Usuario, new { @class = "form-control", disabled = true }) <!--no podrá ser editado-->
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Nivel")
+                <select name="Nivel" class="form-control">
+                    <option @(Model.Nivel == "" ? "selected" : "") value=""> --Seleccione-- </option>
+                    <option @(Model.Nivel == "Estudiante" ? "selected" : "") value="Estudiante"> Estudiante </option>
+                    <option @(Model.Nivel == "Personal OBUN" ? "selected" : "") value="Personal OBUN"> Personal OBUN </option>
+                    <option @(Model.Nivel == "Docente" ? "selected" : "") value="Docente"> Docente </option>
+                </select>
+                @Html.ValidationMessageFor(x => x.Nivel, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Personal OBUN")
+                <select name="ID_Personal" class="form-control">
+                    <option @(Model.ID_Personal.Equals("") ? "selected" : "") value="@null"> --Seleccione-- </option>
+
+                    @foreach (var d in docente)
+                    {
+                        <option @(Model.ID_Personal.Equals(d.ID_Personal) ? "selected" : "") value="@d.ID_Personal">
+                            @d.Nombres, @d.Apellido_Paterno @d.Apellido_Materno
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Docente")
+                <select name="ID_Docente" class="form-control">
+                    <option @(Model.ID_Docente.Equals("") ? "selected" : "") value="@null"> --Seleccione-- </option>
+
+                    @foreach (var d in docente1)
+                    {
+                        <option @(Model.ID_Docente.Equals(d.ID_Docente) ? "selected" : "") value="@d.ID_Docente">
+                            @d.Nombres, @d.Apellido_Paterno @d.Apellido_Materno
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Estudiante")
+                <select name="ID_Estudiante" class="form-control">
+                    <option @(Model.ID_Estudiante.Equals("") ? "selected" : "") value="@null"> --Seleccione-- </option>
+
+                    @foreach (var d in docente2)
+                    {
+                        <option @(Model.ID_Estudiante.Equals(d.ID_Estudiante) ? "selected" : "") value="@d.ID_Estudiante">
+                            @d.Nombres, @d.Apellido_Paterno @d.Apellido_Materno
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Nombre")
+                @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Nombre, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Clave")
+                @Html.TextBoxFor(x => x.Clave, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Clave, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("avatar")
+                @Html.TextBoxFor(x => x.Avatar, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Avatar, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Estado")
+                <select name="Estado" class="form-control">
+                    <option @(Model.Estado == "" ? "selected" : "") value=""> --Seleccione-- </option>
+                    <option @(Model.Estado == "A" ? "selected" : "") value="A"> Activo </option>
+                    <option @(Model.Estado == "I" ? "selected" : "") value="I"> Inactivo </option>
+                </select>
+                @Html.ValidationMessageFor(x => x.Estado, null, new { @class = "text-danger" })
+            </div>
+
+
+        </div>
+    </div>
+
+    <br />
+    <div class="text-right">
+        <button type="submit" name="submitButton" class="btn btn-primary" value="Guardar Datos"> Registrar Usuario </button>
+
+
+        <a href="~/Usuario" class="btn btn-danger"> Cancelar </a>
+    </div>
+
+
+}

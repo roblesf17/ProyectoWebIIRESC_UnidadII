@@ -1,0 +1,139 @@
+﻿@model  SIGEM_TAEX.Models.Taller
+@{
+    ViewBag.Title = (Model.ID_Taller > 0 ? Model.Nombre : "Nuevo Taller");
+    List<SIGEM_TAEX.Models.Docente> docente = ViewBag.Docente;
+    List<SIGEM_TAEX.Models.Lugar> docente1 = ViewBag.Docente1;
+    List<SIGEM_TAEX.Models.Horario> docente2 = ViewBag.Docente2;
+
+}
+
+<h2>Agregar / Editar</h2>
+
+<ol class="breadcrumb">
+    <li><a href="~/Taller/Index">Taller</a></li>
+    <li> / </li>
+    <li class="active">@(Model.ID_Taller > 0 ? Model.Nombre : "Nuevo Taller")</li>
+</ol>
+
+
+@using (Html.BeginForm("Guardar", "Taller", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.ID_Taller)
+
+    <div class="card">
+        <div class="card-header">Información de la categoria</div>
+
+        <div class="card-body">
+
+            <div class="form-group">
+                @Html.Label("Id")
+                @Html.TextBoxFor(x => x.ID_Taller, new { @class = "form-control", disabled = true }) <!--no podrá ser editado-->
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Docente de Taller")
+                <select name="ID_Docente" class="form-control">
+                    <option @(Model.ID_Docente.Equals("") ? "selected" : "") value=""> --Seleccione-- </option>
+
+                    @foreach (var d in docente)
+                    {
+                        <option @(Model.ID_Docente.Equals(d.ID_Docente) ? "selected" : "") value="@d.ID_Docente">
+                            @d.Nombres, @d.Apellido_Paterno @d.Apellido_Materno
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Docente de Taller")
+                <select name="ID_Lugar" class="form-control">
+                    <option @(Model.ID_Lugar.Equals("") ? "selected" : "") value=""> --Seleccione-- </option>
+
+                    @foreach (var d in docente1)
+                    {
+                        <option @(Model.ID_Lugar.Equals(d.ID_Lugar) ? "selected" : "") value="@d.ID_Lugar">
+                            @d.Direccion
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Horario de Taller")
+                <select name="ID_Horario" class="form-control">
+                    <option @(Model.ID_Horario.Equals("") ? "selected" : "") value=""> --Seleccione-- </option>
+
+                    @foreach (var d in docente2)
+                    {
+                        <option @(Model.ID_Horario.Equals(d.ID_Horario) ? "selected" : "") value="@d.ID_Horario">
+                            @d.Hora - @d.Hora_Fin
+                        </option>
+                    }
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                @Html.Label("Nombre")
+                @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Nombre, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Categoria")
+                <select name="Categoria" class="form-control">
+                    <option @(Model.Categoria == "" ? "selected" : "") value=""> --Seleccione-- </option>
+                    <option @(Model.Categoria == "Artistico Cultural" ? "selected" : "") value="Artistico Cultural"> Artistico Cultural </option>
+                    <option @(Model.Categoria == "Artistico Cultural" ? "selected" : "") value="Artistico Cultural"> Artistico Cultural </option>
+                </select>
+                @Html.ValidationMessageFor(x => x.Estado, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Cantidad de Inscritos")
+                @Html.TextBoxFor(x => x.Cantidad_Inscritos, new { @class = "txtUpDown", disabled = true })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Cupos Disponibles")
+                @Html.TextBoxFor(x => x.Cupos_Disponibles, new { @class = "txtUpDown" })
+                @Html.ValidationMessageFor(x => x.Cupos_Disponibles, null, new { @class = "text-danger" })
+            </div>
+
+
+            <div class="form-group">
+                @Html.Label("Fecha de Inicio")
+                @Html.TextBoxFor(m => m.Fecha_Inicio, new { type = "date" })
+                @Html.ValidationMessageFor(x => x.Fecha_Inicio, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Fecha de Fin")
+                @Html.TextBoxFor(m => m.Fecha_Fin, new { type = "date" })
+                @Html.ValidationMessageFor(x => x.Fecha_Fin, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Estado")
+                <select name="Estado" class="form-control">
+                    <option @(Model.Estado == "" ? "selected" : "") value=""> --Seleccione-- </option>
+                    <option @(Model.Estado == "A" ? "selected" : "") value="A"> Activo </option>
+                    <option @(Model.Estado == "I" ? "selected" : "") value="I"> Inactivo </option>
+                </select>
+                @Html.ValidationMessageFor(x => x.Estado, null, new { @class = "text-danger" })
+            </div>
+
+
+        </div>
+        </div>
+
+    <br />
+    <div class="text-right">
+        <button type="submit" name="submitButton" class="btn btn-primary" value="Guardar Datos"> Registrar Taller </button>
+
+
+        <a href="~/Taller" class="btn btn-danger"> Cancelar </a>
+    </div>
+
+
+}

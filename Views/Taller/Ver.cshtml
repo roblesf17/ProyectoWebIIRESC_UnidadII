@@ -1,0 +1,51 @@
+﻿@model SIGEM_TAEX.Models.Taller
+
+@{
+    ViewBag.Title = "Ver";
+}
+
+<h2>Ver</h2>
+
+<ol class="breadcrumb">
+    <li><a href="~/Taller/Index">Taller </a></li>
+    <li> / </li>
+    <li class="active">@Model.Nombre</li>
+</ol>
+
+<div class="card card-body">
+    <div class="card-header">Detalles del Taller</div>
+    <div class="card-body">
+        <dl class="dl-horizontal">
+            <dt>Id</dt>
+            <dd>@Model.ID_Taller</dd>
+
+            <dt>Docente del Taller</dt>
+            <dd>@(Model.Docente.Nombres + " " + Model.Docente.Apellido_Paterno + " " + Model.Docente.Apellido_Materno )</dd>
+
+            <dt>Direccion del Talller </dt>
+            <dd>@Model.Lugar.Direccion </dd>
+
+            <dt>Horario de Taller </dt>
+            <dd>@(Model.Horario.Hora +" " + Model.Horario.Hora_Fin)  </dd>
+
+            <dt>Nombre del Taller</dt>
+            <dd>@Model.Nombre </dd>
+
+            <dt>Categoria </dt>
+            <dd>@Model.Categoria </dd>
+
+            <dt>Cantidad de inscritos </dt>
+            <dd>@Model.Cantidad_Inscritos</dd>
+
+            <dt>Fecha Inicio </dt>
+            <dd>@Model.Fecha_Inicio </dd>
+
+            <dt>Fecha Fin </dt>
+            <dd>@Model.Fecha_Inicio </dd>
+
+            <dt>Estado</dt>
+            <dd>@(Model.Estado == "A" ? "Activo" : "Inactivo")</dd>
+
+        </dl>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿
+﻿@model List<SIGEM_TAEX.Models.Personal_OBUN>
+
 @{
     ViewBag.Title = "Index";
 }
@@ -42,104 +43,49 @@
                     <table id="DataTablesLanguage" class="table align-items-center table-flush">
                         <thead class="thead-light" style="margin-top:10px;">
                             <tr>
-                                <th scope="col" class="sort" data-sort="name">Project</th>
-                                <th scope="col" class="sort" data-sort="budget">Budget</th>
-                                <th scope="col" class="sort" data-sort="status">Status</th>
-                                <th scope="col">Users</th>
-                                <th scope="col" class="sort" data-sort="completion">Completion</th>
-                                <th scope="col"></th>
+                                <th scope="col" class="sort" data-sort="name">ID</th>
+                                <th scope="col" class="sort" data-sort="budget">DNI</th>
+                                <th scope="col" class="sort" data-sort="status">Nombres</th>
+                                <th scope="col" class="sort" data-sort="status">Apellido Paterno</th>
+                                <th scope="col" class="sort" data-sort="status">Apellido Materno</th>
+                                <th scope="col" class="sort" data-sort="status">Celular</th>
+                                <th scope="col" class="sort" data-sort="status">Correo</th>
+                                <th scope="col" class="sort" data-sort="status">Direccion</th>
+                                <th scope="col" class="sort" data-sort="status">Estado</th>
+
+                                <th style="width : 300px">Acciones</th>
+
                             </tr>
                         </thead>
 
                         <tbody class="list">
+
+                            @foreach (var m in Model)
+                            {
                             <tr>
-                                <th scope="row">
-                                    <div class="media align-items-center">
-                                        <span class="name mb-0 text-sm">Argon Design System</span>
-                                    </div>
+
+                                <th>@(m.ID_Personal)</th>
+                                <th>@(m.DNI)</th>
+                                <th>@(m.Nombres )</th>
+                                <th>@(m.Apellido_Paterno )</th>
+                                <th>@(m.Apellido_Materno )</th>
+                                <th>@(m.Celular )</th>
+                                <th>@(m.Correo )</th>
+                                <th>@(m.Direccion )</th>
+                                <th>@(m.Estado == "A" ? "Activo" : "Inactivo")</th>
+                                <th>
+                                    <a href="~/PersonalObun/Ver/@m.ID_Personal" class="btn btn-xs btn-warning">Detalles</a>
+                                    <a href="~/PersonalObun/AgregarModificar/@m.ID_Personal" class="btn btn-xs btn-primary">Modificar</a>
+                                    <a onclick="return confirm('Esta seguro que desea eliminabr el registro?...');"
+                                       href="~/PersonalObun/Eliminar/@m.ID_Personal" class="btn btn-xs btn-danger">Eliminar</a>
                                 </th>
-                                <td class="budget">
-                                    $2500 USD
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td class="text-right">
-                                    <a href="#" class="btn btn-sm btn-neutral">Ver</a>
-                                    <a href="~/Usuario/Agregar" class="btn btn-sm btn-neutral">Modificar</a>
-                                </td>
+
+
                             </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="media align-items-center">
-                                        <span class="name mb-0 text-sm">Argon Design System</span>
-                                    </div>
-                                </th>
-                                <td class="budget">
-                                    $2500 USD
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td class="text-right">
-                                    <a href="#" class="btn btn-sm btn-neutral">Ver</a>
-                                    <a href="~/Usuario/Agregar" class="btn btn-sm btn-neutral">Modificar</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="media align-items-center">
-                                        <span class="name mb-0 text-sm">Argon Design System</span>
-                                    </div>
-                                </th>
-                                <td class="budget">
-                                    $2500 USD
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span class="completion mr-2">60%</span>
-                                    </div>
-                                </td>
-                                <td class="text-right">
-                                    <a href="#" class="btn btn-sm btn-neutral">Ver</a>
-                                    <a href="~/Usuario/Agregar" class="btn btn-sm btn-neutral">Modificar</a>
-                                </td>
-                            </tr>
+                            }
+
                         </tbody>
+
                     </table>
                     <br /><br />
                 </div>

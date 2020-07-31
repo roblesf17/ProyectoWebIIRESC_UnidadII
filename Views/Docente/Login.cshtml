@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Acceder", "Login", FormMethod.Post))
+{
+    <div class="form-group">
+        <label> Usuario</label>
+        <input type="text" name="usuario" class="form-control" placeholder="Ingrese su usuario" required />
+    </div>
+    <div class="form-group">
+        <label> Contraseña</label>
+        <input type="password" name="password" class="form-control" placeholder="Ingrese su contraseña" required />
+    </div>
+    <div class="text-right">
+        <button data-ajax="true" type="submit" class="btn btn-primary">Acceder</button>
+    </div>
+}

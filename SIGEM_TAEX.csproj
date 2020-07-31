@@ -1767,6 +1767,7 @@
     <Compile Include="Controllers\EscuelaProfesionalController.cs" />
     <Compile Include="Controllers\EstudianteController.cs" />
     <Compile Include="Controllers\HorarioController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LugarController.cs" />
     <Compile Include="Controllers\MatriculaController.cs" />
     <Compile Include="Controllers\NotaController.cs" />
@@ -1776,6 +1777,7 @@
     <Compile Include="Controllers\TallerController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\WebController.cs" />
+    <Compile Include="Filters\ClsAdminFilters.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1785,12 +1787,15 @@
     <Compile Include="Models\Docente.cs" />
     <Compile Include="Models\Escuela_Profesional.cs" />
     <Compile Include="Models\Estudiante.cs" />
+    <Compile Include="Models\HashHelper.cs" />
     <Compile Include="Models\Horario.cs" />
     <Compile Include="Models\Lugar.cs" />
     <Compile Include="Models\Matricula.cs" />
     <Compile Include="Models\Nota.cs" />
     <Compile Include="Models\Periodo.cs" />
     <Compile Include="Models\Personal_OBUN.cs" />
+    <Compile Include="Models\ResponseModel.cs" />
+    <Compile Include="Models\SessionHelper.cs" />
     <Compile Include="Models\Taller.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1857,6 +1862,8 @@
     <Content Include="Views\Asistencia\Ver.cshtml" />
     <Content Include="Views\Asistencia\AgregarEditar.cshtml" />
     <Content Include="Views\Usuario\AgregarEditar.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Docente\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

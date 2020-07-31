@@ -53,6 +53,17 @@ namespace SIGEM_TAEX.Controllers
             );
         }
 
+
+
+        public ActionResult Login()
+        {
+            return Redirect("~/Docente");
+        }
+
+
+
+
+
         public ActionResult AgregarEditarModificar(int id = 0)
         {//
             ViewBag.Docente = objDocente.Listar();

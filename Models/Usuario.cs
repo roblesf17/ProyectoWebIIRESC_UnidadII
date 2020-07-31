@@ -13,6 +13,8 @@ namespace SIGEM_TAEX.Models
     using System.IO;
     using System.Data.Entity;
 
+    using SIGEM_TAEX.Filters;
+
     [Table("Usuario")]
     public partial class Usuario
     {
@@ -156,6 +158,42 @@ namespace SIGEM_TAEX.Models
                 throw;
             }
         }
+
+
+
+        public ResponseModel Acceder(string Usuario, string Password)
+        {
+            var rm = new ResponseModel();
+            try
+            {
+                //ModelBD es el ADO QUE HEMOS CREADO
+                using (var db = new BDModeloTaex())
+                {
+                    Password = HashHelper.MD5(Password);
+
+                    var query = db.Usuario.Where(x => x.Nombre == Usuario)
+                        .Where(x => x.Clave == Password)
+                        .SingleOrDefault();
+
+                    if (query != null)
+                    {
+                        SessionHelper.AddUserToSession(ID_Usuario.ToString());
+                        rm.SetResponse(true);
+
+                    }
+                    else
+                    {
+                        rm.SetResponse(false, "Usuario y/o Password incorrectos ...");
+                    }
+
+                }
+            }
+
+            catch (Exception ex)
+            { throw; }
+            return rm;
+        }
+
 
     }
 }
